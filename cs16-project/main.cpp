@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <cctype>
 using namespace std;
 class Person
 {
@@ -47,25 +47,56 @@ class Admin : public Person
 };
 
 class Validation{
-
-static checkName(string name){
-
+public:
+bool static checkName(string name){
+if(name.length() >=5 && name.length() <=20){
+    int l=name.length();
+    for (int i = 0; i < l; i++){
+        if(!isalpha(name[i])){
+            cout<<"name must be all alphabetic chars"<<endl;
+            break;
+            return false;
+        }
+    }
+    return true;
+}else{
+cout<<"Name must be between 5 & 20 in size"<<endl;
+return false;
+}
 }
 
-static checkPassword(string password){
+ bool static checkPassword(string password){
+if(password.length() >=8 && password.length() <=20){
 
+    return true;
+}else{
+cout<<"Password must be between 8 & 20 in size"<<endl;
+return false;
+}
 }
 
-static checkSalary(double salary){
-
+bool static checkSalary(double salary){
+if(salary <5000){
+        cout<<"salary must be minimum 5000"<<endl;
+    return false;
+}else{
+return true;
+}
 }
 
-static checkBalance(double balance){
-
+bool static checkBalance(double balance){
+if(balance <1500){
+        cout<<"balance must be minimum 1500"<<endl;
+    return false;
+}else{
+return true;
+}
 }
 };
 int main()
 {
-    cout << "Hello world!" << endl;
-    return 0;
+   Validation::checkName("wwdddsddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdssdddw");
+Validation::checkPassword("ww1dsw");
+Validation::checkBalance(200);
+Validation::checkSalary(20000);
 }
