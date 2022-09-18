@@ -86,10 +86,7 @@ public:
         this->id = id;
         this->password = password;
     }
-    void set_auther(Auther a)
-    {
-        auther = a;
-    }
+
     void setAdd_client(Client c)
     {
         new_client=c;
