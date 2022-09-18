@@ -46,7 +46,24 @@ class Admin : public Person
 
 };
 
+class Validation{
 
+static checkName(string name){
+
+}
+
+static checkPassword(string password){
+
+}
+
+static checkSalary(double salary){
+
+}
+
+static checkBalance(double balance){
+
+}
+};
 int main()
 {
     cout << "Hello world!" << endl;
