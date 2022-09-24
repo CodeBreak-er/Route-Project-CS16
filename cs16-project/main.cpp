@@ -8,6 +8,19 @@ protected:
     string name, password;
     double balance;
 public:
+    Person()
+    {
+        this->name="";
+        this->password="";
+        this->balance=0;
+    }
+    Person(string name,string password,double balance)
+    {
+
+        Validation::checkName(name)?this->name = name:cout<<"Name must be between 5 & 20 in size"<<endl;
+        Validation::checkPassword(password)?this->password = password: cout<<"Password must be between 8 & 20 in size"<<endl;
+        Validation::checkBalance(balance)&&this->balance = balance;
+    }
     //Setters:
     void set_id(int id)
     {
@@ -15,15 +28,15 @@ public:
     }
     void set_name(string name)
     {
-        this->name = name;
+        Validation::checkName(name)?this->name = name:cout<<"Name must be between 5 & 20 in size"<<endl
     }
     void set_password(string password)
     {
-        this->password = password;
+        Validation::checkPassword(password)?this->password = password: cout<<"Password must be between 8 & 20 in size"<<endl;
     }
     void set_balance(double balance)
     {
-        this->balance = balance;
+Validation::checkBalance(balance)&&this->balance = balance:
     }
 
     //Getters:
@@ -63,55 +76,130 @@ class Client : public Person
 class Employee : public Person
 {
 protected:
-    double Emp_salary;
-    Client new_client;
+    double salary;
 
     //constructor
 public:
     Employee()
     {
-        Emp_salary=0;
+        this->salary=0;
     }
-    Employee(int id, string name, string passwords, double salary):Person(id, name, password)
+    Employee(string name, string password,double balance, double salary):Person( name, password,balance)
     {
-        Emp_salary = salary;
+        Validation::checkSalary(salary)&&this->salary= salary;
     }
     //Setter:
-    void setEmp_salary(double salary)
+    void setSalary(double salary)
     {
-        Emp_salary = salary;
+        Validation::checkSalary(salary)&&this->salary= salary;
     }
-    void setEmp_login(int id,string password )
+    void setLogin(int id,string password )
     {
         this->id = id;
         this->password = password;
     }
 
-    void setAdd_client(Client c)
-    {
-        new_client=c;
-    }
+
     //Getters:
-    double getEmp_salary()
+    double getSalary()
     {
-        return Emp_salary;
+        return this->salary;
     }
-    Client getAdd_client()
-    {
-        return clientName;
-    }
+
     //display employee his info
     void display()
     {
         Person::display();
-        cout << "Available Salary:" << Emp_salary << endl;
+        cout << "Available Salary:" << this->salary << endl;
 
     }
 };
 
-class Admin : public Person
+class Admin : public Employee
 {
-
+private :
+    int EmployeeCount;
+    Employee oneEmployee[100];
+public :
+    void addEmployee
+    {
+        int id;
+        string name, password;
+        double balance;
+        cout << "Please Enter Employee Name : "  ;
+        cin >> name;
+        cout << "Please Enter Employee ID : "  ;
+        cin >> id;
+        cout << "Please Enter Employee Password : "  ;
+        cin >> password;
+        cout << "Please Enter Employee balance : "  ;
+        cin >> balance;
+        Employee Employee (id,name,password,balance)
+    }
+    void editEmployee
+    {
+        cout << "Please enter the name of the employee you need to edit\n";
+        string name;
+        cin >> name;
+        bool edited = false;
+        for (int i =0; i < EmployeeCount; i++ )
+        {
+            if(Employee.get_name() == name)
+            {
+                edited = true;
+                edited = true;
+                cout << "Press 1 to edit name\n";
+                cout << "Press 2 to edit password\n";
+                cout << "Press 3 to edit salary\n";
+                int option;
+                cin >> option;
+                if(option == 1)
+                {
+                    cout << "please enter the new name: ";
+                    cin >> name;
+                    if (checkName(name) == true)
+                        Employee[i].set_name(name);
+                    else
+                        cout<<"name must be all alphabetic chars " ;
+                }
+                else if(option == 2)
+                {
+                    string password;
+                    cout << "Please enter the new password : ";
+                    cin >> password;
+                    if (checkPassword(password) == true)
+                        Employee[i].set_password(password);
+                    else
+                        cout << "Password must be between 8 & 20 in size " ;
+                }
+                else
+                {
+                    int salary;
+                    cout << "Please enter the new salary: ";
+                    cin >> salary;
+                    if (checkSalary(salary) == true)
+                        Employee[i].setEmp_salary(salary);
+                    else
+                        cout << "salary must be minimum 5000 " ;
+                }
+                break;
+            }
+        }
+        Admin()
+        {
+            EmployeeCount = 0;
+        }
+    }
+}
+void listAllEmployees()
+{
+    cout << "Starting to list all employees...\n";
+    for(int i = 0 ; i < EmployeeCount ; i++)
+    {
+        oneEmployee[i].display();
+    }
+    cout << "Finished listing all employees...\n";
+}
 };
 
 class Validation
@@ -182,8 +270,23 @@ public:
 };
 int main()
 {
-    Validation::checkName("wwdddsddsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdsdssdddw");
-    Validation::checkPassword("ww1dsw");
-    Validation::checkBalance(200);
-    Validation::checkSalary(20000);
+
+    string name, password;
+    double balance;
+    double salary;
+    Employee e("ahmed","123",0,5000);
+
+    cout<<"Enter your name: "<<" ";
+    cin>>name;
+    cout<<"Enter your password: "<<" ";
+    cin>>password;
+    //files created
+    FILE* ClientText=fopen("Clients.txt","a");
+    fclose(ClientText);
+    FILE* EmployeeText=fopen("Employees.txt","a");
+    fprintf(EmployeeText,e("ahmed","123",0,5000));
+    fclose(EmployeeText);
+    FILE* AdminText=fopen("Admin.txt","a");
+    fclose(AdminText);
+
 }
