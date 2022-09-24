@@ -39,6 +39,7 @@ public:
 Validation::checkBalance(balance)&&this->balance = balance:
     }
 
+    // test try
     //Getters:
     int get_id()
     {
@@ -148,6 +149,30 @@ public :
             {
                 edited = true;
                 edited = true;
+=======
+void addEmployee {
+int id;
+string name, password;
+double balance;
+cout << "Please Enter Employee Name : "  ;
+cin >> name;
+cout << "Please Enter Employee ID : "  ;
+cin >> id;
+cout << "Please Enter Employee Password : "  ;
+cin >> password;
+cout << "Please Enter Employee balance : "  ;
+cin >> balance;
+Employee Employee (id,name,password,balance)
+}
+void editEmployee {
+cout << "Please enter the name of the employee you need to edit\n";
+string name;
+cin >> name;
+bool edited = false;
+for (int i =0; i < EmployeeCount; i++ ) {
+        if(Employee.get_name() == name){
+            edited = true;
+            edited = true;
                 cout << "Press 1 to edit name\n";
                 cout << "Press 2 to edit password\n";
                 cout << "Press 3 to edit salary\n";
@@ -164,6 +189,14 @@ public :
                 }
                 else if(option == 2)
                 {
+                if(option == 1) {
+                    cout << "please enter the new name: ";
+                    cin >> name;
+                    if (checkName(name) == true)
+                    Employee[i].set_name(name);
+                    else
+                        cout<<"name must be all alphabetic chars " ;
+                } else if(option == 2) {
                     string password;
                     cout << "Please enter the new password : ";
                     cin >> password;
@@ -174,6 +207,10 @@ public :
                 }
                 else
                 {
+                     Employee[i].set_password(password);
+                     else
+                        cout << "Password must be between 8 & 20 in size " ;
+                } else {
                     int salary;
                     cout << "Please enter the new salary: ";
                     cin >> salary;
@@ -200,7 +237,19 @@ void listAllEmployees()
     }
     cout << "Finished listing all employees...\n";
 }
+Admin() {EmployeeCount = 0;}
+}
+}
+void listAllEmployees() {
+        cout << "Starting to list all employees...\n";
+        for(int i = 0 ; i < EmployeeCount ; i++) {
+            oneEmployee[i].display();
+        }
+        cout << "Finished listing all employees...\n";
+    }
 };
+
+
 
 class Validation
 {
